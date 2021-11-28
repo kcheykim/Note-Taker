@@ -3,6 +3,8 @@ const path = require('path');
 const express = require('express');
 const { notes } = require('./db/db.json');
 
+const uuid = require('./helpers/uuid');
+
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -43,11 +45,11 @@ app.use(express.json()); //parse incoming JSON data
 //     console.info(`${req.method} request received to get notes`);
 // });
 
-app.post('/api/notes', (req, res) => {
-    req.body.id = notes.length.toString(); // set id based on what the next index of the array will be
-    const note = createNewNote(req.body, notes); // add note to json file and note array in this function
-    res.json(note);
-});
+// app.post('/api/notes', (req, res) => {
+//     req.body.id = notes.length.toString(); // set id based on what the next index of the array will be
+//     const note = createNewNote(req.body, notes); // add note to json file and note array in this function
+//     res.json(note);
+// });
 
 app.get('/api/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './db/db.json'));
