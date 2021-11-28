@@ -12,44 +12,7 @@ app.use(express.static('public')); //make front end files like css and javascrip
 app.use(express.urlencoded({ extended: true })); //parse incoming string or array data
 app.use(express.json()); //parse incoming JSON data
 
-// function createNewNotes(body, notesArray) {
-//     const note = body;
-//     notesArray.push(note);
-//     fs.writeFileSync(
-//         path.join(__dirname, './db/db.json'),
-//         JSON.stringify({ notes: notesArray }, null, 2)
-//     );
-//     return note;
-// }
 
-// function validateNote(note) {
-//     if (!note.title || typeof note.title !== 'string') { return false; }
-//     if (!note.text || typeof note.text !== 'string') { return false; }
-//     return true;
-// }
-
-// app.get('/api/notes', (req, res) => {
-//     // let results = notes;
-//     // res.json(results);
-
-//     fs.readFile(`./db/db.json`, 'utf8', (err, data) => {
-//             if (err) { console.log(err) } else {
-//                 const parsedNotes = JSON.parse(data);
-//                 res.json(parsedNotes)
-//             }
-//         })
-//         // Send a message to the user
-//     res.json(`${req.method} request received for notes`);
-
-//     // Log our notes to the terminal
-//     console.info(`${req.method} request received to get notes`);
-// });
-
-// app.post('/api/notes', (req, res) => {
-//     req.body.id = notes.length.toString(); // set id based on what the next index of the array will be
-//     const note = createNewNote(req.body, notes); // add note to json file and note array in this function
-//     res.json(note);
-// });
 
 app.get('/api/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './db/db.json'));
@@ -57,6 +20,45 @@ app.get('/api/notes', (req, res) => {
 
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './public/notes.html'));
+});
+
+
+
+
+app.get('/api/notes/:note_id', (req, res) => {
+    fs.readFile(`./db/db.json`, 'utf8', (err, data) => {
+        if (err) { throw (err) } else { res.JSON.parse(data); }
+    })
+    if (req.body && req.params.note_id) {
+        for (let i = 0; i < notes.length; i++) {
+            if (notes[i].note_id === req.params.note_id) {
+                res.json(notes[i]);
+                return;
+            }
+        }
+        res.json('Note ID not found');
+    }
+});
+
+app.post('/api/notes', (req, res) => {
+    console.info(`${req.method} request received to add notes`);
+
+    const { title, text } = req.body;
+    if (title && text) {
+        fs.readFile(`./db/db.json`, 'utf8', (err, data) => {
+            if (err) { console.log(err) } else {
+                const savedNotes = JSON.parse(data);
+                savedNotes.push({ title, text, note_id: uuid() });
+                // Write the string to a file
+                fs.writeFile(`./db/db.json`, JSON.stringify(savedNotes), (err) => err ?
+                    console.error(err) : console.log(`Note for ${title} has been written to JSON file`)
+                );
+            }
+        })
+        const response = { status: 'success', body: { title, text, note_id: uuid() } };
+        // console.log(response);
+        res.json(response);
+    } else { res.json('Error in adding note'); }
 });
 
 app.get('*', (req, res) => {
