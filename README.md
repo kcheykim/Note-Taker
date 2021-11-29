@@ -1,76 +1,56 @@
-# 11 Express.js: Note Taker
+# Note Taker
+The Note Taker application serves the purpose of writing, saving, and deleting notes. Thsi application is build using Express.js that will save and retrieve the data from a JSON file. This application demonstrate the full stack by utitlizing both the back-end and front-end. The Note Taker will be presented with a landing page with a button that can be invoked to take the user to the note page. The note page will displayed existing notes on the left-hand colum and empty fileds on the right side that will all the user to add new notes with title and text. When entering the new input of title and text, a save icon will appear on the top right corner besides the pen icon. If the save icon is lick, the new note will appear on the left-hand column. If the pen icon is click, an empty field will appear on the right-hand side of the page. If the one of the existing notes is click, then the title and text will appear on the right side of the page. Enjoy using the note taker to keep you busy schedule organized.
 
-## Your Task
+#### This page is licensed under (click badge for license page): 
+[![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Your challenge is to create an application called Note Taker that can be used to write and save notes. This application will use an Express.js back end and will save and retrieve note data from a JSON file.
+## Built With
 
-The application’s front end has already been created. It's your job to build the back end, connect the two, and then deploy the entire application to Heroku.
+* Express.js
+* Heroku
+* HTML
+* Advanced CSS styles / Bootstrap
+* JavaScript
+* NPM modules - Express, fs, path
 
-Before you start, clone [the starter code](https://github.com/coding-boot-camp/miniature-eureka).
+## HTML
+* A website that showcase a landing page for the note taker and page that will allow the user to add, view and delete notes.
 
-## User Story
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [Credits](#credits)
+* [License](#license) 
+* [Contributing](#contributing)
+* [Test](#test)  
+* [Questions](#questions)
 
-```
-AS A small business owner
-I WANT to be able to write and save notes
-SO THAT I can organize my thoughts and keep track of tasks I need to complete
-```
+## Installation
+$git clone https://github.com/kcheykim/note-taker.git<br />$rm package.json<br />$npm init -y <br />$npm i express<br />$heroku create 
 
-## Acceptance Criteria
+## Usage
+Here are the images and link of the pages:
+![Note-Taker-Landing](./assets/images/note-taker-landing.png?raw=true)
+https://sleepy-cove-15810.herokuapp.com/
+![Note-Taker](./assets/images/note-taker.png?raw=true)
+https://sleepy-cove-15810.herokuapp.com/notes
 
-```
-GIVEN a note-taking application
-WHEN I open the Note Taker
-THEN I am presented with a landing page with a link to a notes page
-WHEN I click on the link to the notes page
-THEN I am presented with a page with existing notes listed in the left-hand column, plus empty fields to enter a new note title and the note’s text in the right-hand column
-WHEN I enter a new note title and the note’s text
-THEN a Save icon appears in the navigation at the top of the page
-WHEN I click on the Save icon
-THEN the new note I have entered is saved and appears in the left-hand column with the other existing notes
-WHEN I click on an existing note in the list in the left-hand column
-THEN that note appears in the right-hand column
-WHEN I click on the Write icon in the navigation at the top of the page
-THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
-```
+## Credits
+Here are the list of collaborators:  
+Kosal Cheykim
 
-## Mock-Up
+## License
+Notice: This license is covered under (https://opensource.org/licenses/MIT)
 
-The following images show the web application's appearance and functionality: 
+## Contributing
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
-![Existing notes are listed in the left-hand column with empty fields on the right-hand side for the new note’s title and text.](./Assets/11-express-homework-demo-01.png)
+## Test
+Here is the instruction test: $npm test (after installing jest)<br/>
+Here is the instruction to run the application: $node index (after installing inquirer)
 
-![Note titled “Balance accounts” reads, “Balance account books by end of day Monday,” with other notes listed on the left.](./Assets/11-express-homework-demo-02.png)
+## Questions
+More Questions? Contact me via:  
+GitHub: http://github.com/kcheykim  
+Email: kosalcheykim@gmail.com
 
-## Getting Started
-
-The application should have a `db.json` file on the back end, which will be used to store and retrieve notes using the `fs` module.
-
-The following HTML routes should be created:
-
-* `GET /notes` should return the `notes.html` file.
-
-* `GET *` should return the `index.html` file.
-
-The following API routes should be created:
-
-* `GET /api/notes` should read the `db.json` file and return all saved notes as JSON.
-
-* `POST /api/notes` should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client. You'll need to find a way to give each note a unique id when it's saved (look into `npm` packages that could do this for you).
-
-## Bonus
-
-You haven’t learned how to handle DELETE requests, but this application has that functionality in the front end. As a bonus, see if you can add the DELETE route to the application using the following guideline:
-
-* `DELETE /api/notes/:id` should receive a query parameter containing the id of a note to delete. In order to delete a note, you'll need to read all notes from the `db.json` file, remove the note with the given `id` property, and then rewrite the notes to the `db.json` file.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
-- - -
-© 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
