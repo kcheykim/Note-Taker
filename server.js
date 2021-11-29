@@ -28,34 +28,26 @@ app.post('/api/notes', (req, res) => {
                 savedNotes.push({ title, text, id: uuid() });
                 // Write the string to a file
                 fs.writeFile(`./db/db.json`, JSON.stringify(savedNotes), (err) => err ?
-                    console.error(err) : console.log(`Note for ${title} has been written to JSON file`)
+                    console.error(err) : console.log(`${title} is written to JSON file`)
                 );
             }
         })
-        const response = { status: 'success', body: { title, text, id: uuid() } };
-        res.json(response);
-    } else { res.json('Error in adding note'); }
+        res.json({ status: 'SUCCESS', body: { title, text, id: uuid() } });
+    } else { res.json('Error: Cannot add note'); }
 });
 
 app.delete('/api/notes/:id', (req, res) => {
     fs.readFile(`./db/db.json`, 'utf8', (err, data) => {
-        let deleteID = req.params.id;
-        console.log(deleteID);
         if (err) { console.log(err); }
         let savedNotes = JSON.parse(data);
         for (let i = 0; i < savedNotes.length; i++) {
-            console.log(savedNotes[i].id + ' = ' + deleteID)
-            if (savedNotes[i].id === deleteID) {
-                savedNotes.splice(i, 1);
-            }
+            if (savedNotes[i].id === req.params.id) { savedNotes.splice(i, 1); }
         }
         fs.writeFile(`./db/db.json`, JSON.stringify(savedNotes), (err) => err ?
-            console.error(err) : console.log(`Note for ${req.params.id} has been deleted from JSON file`)
+            console.error(err) : console.log(`Note deleted ID: ${req.params.id}`)
         );
-        console.log(`Note deleted ID: ${req.params.id}`);
         res.send(savedNotes);
     })
-
 });
 
 app.put('/api/notes/:id', (req, res) => {
@@ -68,7 +60,7 @@ app.put('/api/notes/:id', (req, res) => {
             let update = { title: req.body.title, text: req.body.text, id: select.id };
             savedNotes.splice(savedNotes.indexOf(select), 1, update);
             fs.writeFile('./db/db.json', JSON.stringify(savedNotes), (err) => err ?
-                console.error(err) : console.log(`Note for ${savedNotes.id} has been written to JSON file`)
+                console.error(err) : console.log(`Note update ID: ${savedNotes.id}`)
             );
             res.json(savedNotes);
         }
