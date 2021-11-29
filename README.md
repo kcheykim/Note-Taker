@@ -21,8 +21,7 @@ The Note Taker application serves the purpose of writing, saving, and deleting n
 * [Usage](#usage)
 * [Credits](#credits)
 * [License](#license) 
-* [Contributing](#contributing)
-* [Test](#test)  
+* [Contributing](#contributing) 
 * [Questions](#questions)
 
 ## Installation
@@ -30,9 +29,9 @@ $git clone https://github.com/kcheykim/note-taker.git<br />$rm package.json<br /
 
 ## Usage
 Here are the images and link of the pages:
-![Note-Taker-Landing](./assets/images/note-taker-landing.png?raw=true)
+![note-taker-landing](./assets/images/note-taker-landing.png?raw=true)
 https://sleepy-cove-15810.herokuapp.com/
-![Note-Taker](./assets/images/note-taker.png?raw=true)
+![note-taker](./assets/images/note-taker.png?raw=true)
 https://sleepy-cove-15810.herokuapp.com/notes
 
 ## Credits
@@ -44,10 +43,6 @@ Notice: This license is covered under (https://opensource.org/licenses/MIT)
 
 ## Contributing
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
-
-## Test
-Here is the instruction test: $npm test (after installing jest)<br/>
-Here is the instruction to run the application: $node index (after installing inquirer)
 
 ## Questions
 More Questions? Contact me via:  
